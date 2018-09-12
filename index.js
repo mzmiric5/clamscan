@@ -227,7 +227,7 @@ NodeClam.prototype.is_infected = function(file, callback) {
     }
 
     // Execute the clam binary with the proper flags
-    execFile(this.settings[this.scanner].path, this.build_clam_args(file), function(err, stdout, stderr) {
+    execFile(this.settings[this.scanner].path, this.build_clam_args(file), { env: process.env }, function(err, stdout, stderr) {
         if (err || stderr) {
             if (err) {
                 if(err.hasOwnProperty('code') && err.code === 1) {
